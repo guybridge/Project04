@@ -2,10 +2,10 @@
     <string name="app_name">Animal Guesser</string>
 
     <string-array name="likeness_values">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
+        <item>Not me</item>
+        <item>Maybe</item>
+        <item>Sometimes</item>
+        <item>Often</item>
+        <item>This is me</item>
     </string-array>
 </resources>
