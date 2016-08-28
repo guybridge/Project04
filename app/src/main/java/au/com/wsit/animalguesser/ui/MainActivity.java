@@ -1,11 +1,14 @@
 package au.com.wsit.animalguesser.ui;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import au.com.wsit.animalguesser.R;
@@ -17,9 +20,11 @@ public class MainActivity extends AppCompatActivity
 {
 
     private static final String TAG = MainActivity.class.getSimpleName();
-    RecyclerView mRecycler;
-    RecyclerView.LayoutManager mLayoutManager;
-    QuestionAdapter mQuestionAdapter;
+    private RecyclerView mRecycler;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private QuestionAdapter mQuestionAdapter;
+    private Button mSubmitButton;
+
 
 
 
@@ -34,6 +39,8 @@ public class MainActivity extends AppCompatActivity
         mRecycler = (RecyclerView) findViewById(R.id.recyclerView);
         mLayoutManager = new LinearLayoutManager(MainActivity.this);
         mRecycler.setLayoutManager(mLayoutManager);
+
+        mSubmitButton = (Button) findViewById(R.id.submitButton);
 
         // Get the question data
         QuestionData questionData = new QuestionData();
@@ -53,6 +60,18 @@ public class MainActivity extends AppCompatActivity
 
         mQuestionAdapter = new QuestionAdapter(MainActivity.this, questionItems);
         mRecycler.setAdapter(mQuestionAdapter);
+
+        mSubmitButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                // Get intent data
+                Intent intent = new Intent(MainActivity.this, Result.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+            }
+        });
 
 
 
