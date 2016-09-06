@@ -1,14 +1,19 @@
 package au.com.wsit.animalguesser.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.TreeMap;
 
 import au.com.wsit.animalguesser.R;
 import au.com.wsit.animalguesser.utils.QuestionItems;
@@ -21,6 +26,8 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
 
     private Context mContext;
     private QuestionItems[] mQuestions;
+    // For storing answers
+    private TreeMap<Integer, String> mAnswers = new TreeMap<>();
 
     public QuestionAdapter(Context context, QuestionItems[] items)
     {
@@ -35,6 +42,14 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
         QuestionViewHolder viewHolder = new QuestionViewHolder(view);
         return viewHolder;
     }
+
+    // Get the answers from the adapter
+    public TreeMap<Integer, String> getmAnswers()
+    {
+        return mAnswers;
+    }
+
+
 
     @Override
     public void onBindViewHolder(QuestionAdapter.QuestionViewHolder holder, final int position)
@@ -79,6 +94,24 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
             ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(mContext, R.array.likeness_values, android.R.layout.simple_spinner_item);
             spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             mSpinnerAnswers.setAdapter(spinnerAdapter);
+
+            mSpinnerAnswers.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+            {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+                {
+                    String answer = parent.getSelectedItem().toString();
+
+                    mAnswers.put(position, answer);
+
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent)
+                {
+
+                }
+            });
 
         }
     }

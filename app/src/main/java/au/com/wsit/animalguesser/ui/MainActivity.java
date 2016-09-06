@@ -1,6 +1,7 @@
 package au.com.wsit.animalguesser.ui;
 
 import android.content.Intent;
+import android.provider.SyncStateContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +14,8 @@ import android.widget.Spinner;
 
 import au.com.wsit.animalguesser.R;
 import au.com.wsit.animalguesser.adapter.QuestionAdapter;
+import au.com.wsit.animalguesser.utils.Constants;
+import au.com.wsit.animalguesser.utils.Guess;
 import au.com.wsit.animalguesser.utils.QuestionData;
 import au.com.wsit.animalguesser.utils.QuestionItems;
 
@@ -66,8 +69,15 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
+                Guess guess = new Guess(getApplicationContext(), mQuestionAdapter.getmAnswers());
+                String animal = guess.guessAnimal();
+
+
+
+
                 // Get intent data
                 Intent intent = new Intent(MainActivity.this, Result.class);
+                intent.putExtra(Constants.KEY_ANIMAL, animal);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }

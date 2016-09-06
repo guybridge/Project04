@@ -12,11 +12,11 @@ public class QuestionData
     public QuestionData()
     {
         HashMap<Integer, String> questions = new HashMap<>();
-        questions.put(0, "You enjoy the quiet and would consider yourself an introvert");
-        questions.put(1, "You would consider yourself shy");
-        questions.put(2, "You like trying new things");
-        questions.put(3, "You like to be the life of the party");
-        questions.put(4, "You like working and playing in a team");
+        questions.put(0, "You enjoy eating fish and hanging around with your family");
+        questions.put(1, "You are often quiet but can be very noisy");
+        questions.put(2, "You are cheeky and get up to no good all the time");
+        questions.put(3, "You enjoy alone time");
+        questions.put(4, "You are outgoing and aggressive");
 
         mQuestions = questions;
     }
