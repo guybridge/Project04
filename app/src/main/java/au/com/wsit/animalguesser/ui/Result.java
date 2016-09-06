@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import au.com.wsit.animalguesser.R;
 import au.com.wsit.animalguesser.utils.Constants;
@@ -41,6 +42,8 @@ public class Result extends AppCompatActivity
                 break;
 
         }
+
+        Toast.makeText(this, "You are a " + intent.getStringExtra(Constants.KEY_ANIMAL), Toast.LENGTH_LONG).show();
 
 
     }
